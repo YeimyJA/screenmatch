@@ -3,8 +3,11 @@ public class movie {
     int launchDate;
     int lengthInMinutes;
     boolean includeInPlan;
-    double sumUpTheEvaluations;
-    int totalEvualuate;
+    private double sumUpTheEvaluations;
+    private int totalEvualuate;
+    int getTotalEvualuate(){
+        return totalEvualuate();
+    }
 
     void showTechnicalSheet(){
         System.out.println("The name movie is: " + name);
@@ -19,5 +22,9 @@ public class movie {
 
     double calculMedia(){
         return sumUpTheEvaluations / totalEvualuate;
+    }
+
+    private int totalEvualuate() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

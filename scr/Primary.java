@@ -7,10 +7,10 @@ public class Primary {
         
         myMovie.showTechnicalSheet();
         myMovie.evaluate(10);
+        myMovie.evaluate(10);
         myMovie.evaluate(7.8);
-
-        System.out.println(myMovie.sumUpTheEvaluations);
-        System.out.println(myMovie.totalEvualuate);
+        System.out.println(myMovie.getTotalEvualuate());
+        System.out.println(myMovie.calculMedia());
         System.out.println(myMovie.calculMedia());
     
         movie anotherMovie = new movie();
