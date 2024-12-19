@@ -1,3 +1,4 @@
+import com.co.yeimy.models.Serie;
 import com.co.yeimy.models.movie;
 
 public class Primary {
@@ -14,7 +15,15 @@ public class Primary {
         myMovie.evaluate(7.8);
         System.out.println(myMovie.getTotalEvualuate());
         System.out.println(myMovie.calculMedia());
-    
+
+        Serie casaDragon =new Serie();
+        casaDragon.setName("La casa del dragon");
+        casaDragon.setLaunchDate(2022);
+        casaDragon.setTemporadas(1);
+        casaDragon.setMinutePerSeason(50);
+        casaDragon.setEpisodesPerSeason(10);
+        System.out.println();
+
       /*movie anotherMovie = new movie();
         anotherMovie.name = "Matrix";
         anotherMovie.launchDate = 1998;
