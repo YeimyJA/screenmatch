@@ -36,7 +36,7 @@ public class Title {
     public void showTechnicalSheet(){
         System.out.println("The name movie is: " + name);
         System.out.println("Your lauch date is: " + launchDate);
-        System.out.println("Length in minutes is: " + lengthInMinutes);
+        System.out.println("Length in minutes is: " + getLengthInMinutes());
 }
 
     public void evaluate(double nota){

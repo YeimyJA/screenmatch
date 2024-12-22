@@ -1,5 +1,6 @@
 import com.co.yeimy.models.Serie;
 import com.co.yeimy.models.movie;
+import com.co.yeimy.screenmacth.calculations.timeCalculator;
 
 public class Primary {
     public static void main(String[] args) {
@@ -22,13 +23,19 @@ public class Primary {
         casaDragon.setTemporadas(1);
         casaDragon.setMinutePerSeason(50);
         casaDragon.setEpisodesPerSeason(10);
-        System.out.println();
+        casaDragon.showTechnicalSheet();
+        System.out.println(casaDragon.getLengthInMinutes());
 
-      /*movie anotherMovie = new movie();
-        anotherMovie.name = "Matrix";
-        anotherMovie.launchDate = 1998;
-        anotherMovie.lengthInMinutes = 180;
+        movie otherMovie = new movie();
+        otherMovie.setName("Matrix");
+        otherMovie.setLaunchDate(1998);
+        otherMovie.setLengthInMinutes(180);
 
-        anotherMovie.showTechnicalSheet(); */
+        timeCalculator calculat = new timeCalculator();
+        calculat.incluid(myMovie);
+        calculat.incluid(casaDragon);
+        calculat.incluid(otherMovie);
+        System.out.println("Time needed to watch your titles on vacation "+calculat.getTimeQuantity()+ " minutos");
+
     }
 }
