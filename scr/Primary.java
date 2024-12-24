@@ -1,6 +1,7 @@
 import com.co.yeimy.models.Serie;
 import com.co.yeimy.models.movie;
 import com.co.yeimy.screenmacth.calculations.timeCalculator;
+import java.util.logging.Filter;
 
 public class Primary {
     public static void main(String[] args) {
@@ -36,6 +37,9 @@ public class Primary {
         calculat.incluid(casaDragon);
         calculat.incluid(otherMovie);
         System.out.println("Time needed to watch your titles on vacation "+calculat.getTimeQuantity()+ " minutos");
+
+        FilterRecommendations FilterRecommendations = new FilterRecommendations();
+        FilterRecommendations.filter(myMovie);
 
     }
 }

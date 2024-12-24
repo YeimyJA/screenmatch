@@ -27,7 +27,8 @@ public class Episode implements Rating {
     public int getRating(){
         if (totalViews>100) {
             return 4;
-        }else
-        return 2;
+        }else{
+            return 2;
+        }
     }
 }
