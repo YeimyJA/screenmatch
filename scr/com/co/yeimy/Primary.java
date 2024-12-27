@@ -1,7 +1,11 @@
+package com.co.yeimy;
+import com.co.yeimy.models.Episode;
 import com.co.yeimy.models.Serie;
 import com.co.yeimy.models.movie;
 import com.co.yeimy.screenmacth.calculations.timeCalculator;
+import com.co.yeimy.screenmacth.calculations.Recommendations;
 import java.util.logging.Filter;
+
 
 public class Primary {
     public static void main(String[] args) {
@@ -38,8 +42,15 @@ public class Primary {
         calculat.incluid(otherMovie);
         System.out.println("Time needed to watch your titles on vacation "+calculat.getTimeQuantity()+ " minutos");
 
-        FilterRecommendations FilterRecommendations = new FilterRecommendations();
+        Recommendations FilterRecommendations = new Recommendations();
         FilterRecommendations.filter(myMovie);
 
+        Episode episode = new Episode();
+        episode.setNumero(1);
+        episode.setNombre("La casa Targaryan");
+        episode.setSerie(casaDragon);
+        episode.setTotalViews(300);
+        
+        FilterRecommendations.filter(episode);
     }
 }

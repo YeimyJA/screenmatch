@@ -1,10 +1,18 @@
 package com.co.yeimy.models;
+import com.co.yeimy.screenmacth.calculations.Rating;
 
 public class Episode implements Rating {
     private int numero;
     private String nombre;
     private Serie serie;
     private int totalViews;
+    
+    public int getTotalViews() {
+        return totalViews;
+    }
+    public void setTotalViews(int totalViews) {
+        this.totalViews = totalViews;
+    }
     public int getNumero() {
         return numero;
     }
@@ -25,10 +33,9 @@ public class Episode implements Rating {
     }
 
     public int getRating(){
-        if (totalViews>100) {
+        if (totalViews > 100)
             return 4;
-        }else{
+        else
             return 2;
-        }
     }
 }
