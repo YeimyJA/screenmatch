@@ -12,7 +12,10 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.DoubleSummaryStatistics;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 public class Main {
     private Scanner keyboard = new Scanner(System.in);
@@ -22,7 +25,7 @@ public class Main {
     private ConvertPiece converter = new ConvertPiece();
 
     public void showMenu(){
-        System.out.println("Ingrese el nombre de la serie que desea buscar");
+        System.out.println("Name Serie");
         var nameSerie = keyboard.nextLine();
 
         var json = useApi.getInformation(URL_BASE+nameSerie.replace(" ", "+")+API_KEY);
@@ -52,7 +55,7 @@ public class Main {
                 .collect(Collectors.toList());
         
         //Top 5 Episode
-        System.out.println("Top 5 Episdodes");
+        System.out.println("Top 5 Episodes");
         informationEpisodes.stream()
                 .filter(e -> !e.imdbRating().equalsIgnoreCase("N/A"))
                  .sorted(Comparator.comparing(InformationEpisode::imdbRating).reversed())
@@ -67,7 +70,7 @@ public class Main {
         episdodes.forEach(System.out::println);
 
         //Search episode for year
-        System.out.println("Ingrese el año a partir del cual desea ver los episodios");
+        System.out.println("Write year for search");
         var year = keyboard.nextInt();
 
         LocalDate dateSearch = LocalDate.of(year, 1, 1);
@@ -76,10 +79,34 @@ public class Main {
         episdodes.stream()
             .filter(e -> e.getReleased()!= null && e.getReleased().isAfter(dateSearch))
             .forEach(e -> System.out.println(
-                "Temporada " + e.getSeason() +
-                "Espisodio " + e.getTitle() +
-                "Fecha de lanzamiento " + e.getReleased().format(dtf)
+                " Season " + e.getSeason() +
+                " Espisode " + e.getTitle() +
+                " Released " + e.getReleased().format(dtf)
                 ) 
             );
+        
+        //Search Episode for Title
+        System.out.println("Write Title search");
+        var partTitle = keyboard.next();
+        Optional<Episode> episodeSearch = episdodes.stream()
+            .filter(e -> e.getTitle().toUpperCase().contains(partTitle.toUpperCase()))
+            .findFirst();
+
+            if (episodeSearch.isPresent()) {
+                System.out.println("Episode searched");
+                System.out.println("The information is: "+episodeSearch.get());
+            }else{
+                System.out.println("Episode did not find");
+            }
+        
+        Map<Integer, Double> ratingSeason = episdodes.stream()
+            .filter(e -> e.getImdbRating()> 0.0)
+            .collect(Collectors.groupingBy(Episode::getSeason, Collectors.averagingDouble(Episode::getImdbRating)));
+            System.out.println(ratingSeason);
+        
+        DoubleSummaryStatistics est = episdodes.stream()
+            .filter(e -> e.getImdbRating()> 0.0)
+            .collect(Collectors.summarizingDouble(Episode::getImdbRating));
+            System.out.println(est);
     }
 }
