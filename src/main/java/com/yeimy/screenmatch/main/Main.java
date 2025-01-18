@@ -8,6 +8,8 @@ import com.yeimy.screenmatch.service.UseAPI;
 import java.util.Scanner;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -63,5 +65,21 @@ public class Main {
                     .map(d -> new Episode(t.Season(), d)))
                 .collect(Collectors.toList());
         episdodes.forEach(System.out::println);
+
+        //Search episode for year
+        System.out.println("Ingrese el año a partir del cual desea ver los episodios");
+        var year = keyboard.nextInt();
+
+        LocalDate dateSearch = LocalDate.of(year, 1, 1);
+
+        DateTimeFormatter dtf =DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        episdodes.stream()
+            .filter(e -> e.getReleased()!= null && e.getReleased().isAfter(dateSearch))
+            .forEach(e -> System.out.println(
+                "Temporada " + e.getSeason() +
+                "Espisodio " + e.getTitle() +
+                "Fecha de lanzamiento " + e.getReleased().format(dtf)
+                ) 
+            );
     }
 }
